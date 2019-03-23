@@ -1,0 +1,7 @@
+[package]
+name = "resufancy"
+version = "0.1.0"
+authors = ["Isobel Redelmeier <iredelmeier@gmail.com>"]
+edition = "2018"
+
+[dependencies]
