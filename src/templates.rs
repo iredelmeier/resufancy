@@ -1,15 +1,13 @@
 use std::collections::HashMap;
 
-use crate::template::{Template, TemplateBuilder};
+use crate::template::Template;
 
 lazy_static! {
     pub static ref BASIC: Template<'static> = {
-        let mut builder = TemplateBuilder::new("basic");
+        let html = include_bytes!("../templates/basic/resume.pug");
+        let stylesheet = include_bytes!("../templates/basic/style.scss");
 
-        builder.html(include_bytes!("../templates/basic/resume.pug"));
-        builder.stylesheet(include_bytes!("../templates/basic/style.scss"));
-
-        builder.build()
+        Template::new("basic", html, stylesheet)
     };
 }
 
