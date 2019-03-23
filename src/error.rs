@@ -10,14 +10,14 @@ pub enum ErrorKind {
 #[derive(Debug)]
 pub struct Error {
     kind: ErrorKind,
-    source: Option<Box<dyn error::Error>>,
+    source: Box<dyn error::Error>,
 }
 
 impl Error {
     pub fn io(source: io::Error) -> Self {
         Self {
             kind: ErrorKind::Io(source.kind()),
-            source: Some(Box::new(source)),
+            source: Box::new(source),
         }
     }
 
@@ -30,12 +30,7 @@ impl error::Error for Error {}
 
 impl Display for Error {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
-        match self.kind {
-            ErrorKind::Io(_) => match self.source {
-                Some(ref err) => err.fmt(f),
-                None => "foo".fmt(f),
-            },
-        }
+        self.source.fmt(f)
     }
 }
 
