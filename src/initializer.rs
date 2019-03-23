@@ -54,7 +54,6 @@ mod tests {
     use filesystem::FakeFileSystem;
 
     use crate::error::ErrorKind;
-    use crate::template::TemplateBuilder;
 
     use super::*;
 
@@ -77,13 +76,9 @@ mod tests {
     #[test]
     fn initialize_uses_specified_template() {
         let fs = FakeFileSystem::new();
+        let template = Template::new("test", "foo".as_bytes(), "bar".as_bytes());
         let mut initializer = Initializer::new().fs(&fs);
-        let mut template_builder = TemplateBuilder::new("test");
 
-        template_builder.html("foo".as_bytes());
-        template_builder.stylesheet("bar".as_bytes());
-
-        let template = template_builder.build();
         initializer.template(&template);
 
         assert!(initializer.initialize().is_ok());
