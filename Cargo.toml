@@ -7,3 +7,5 @@ edition = "2018"
 [dependencies]
 filesystem = "0.4"
 lazy_static="1.3"
+pug = { git = "https://github.com/iredelmeier/pug-rs" }
+sass-rs = "0.2"
