@@ -1,0 +1,41 @@
+version: 2
+jobs:
+  stable:
+    docker:
+    - image: rust:latest
+    steps:
+    - checkout
+    - run:
+        name: Build
+        command: ./scripts/build.sh
+    - run:
+        name: Lint
+        command: |
+          rustup component add clippy
+          ./scripts/lint.sh
+    - run:
+        name: Test
+        command: ./scripts/test.sh
+  nightly:
+    docker:
+    - image: rustlang/rust:nightly
+    steps:
+    - checkout
+    - run:
+        name: Build
+        command: ./scripts/build.sh
+    - run:
+        name: Lint
+        command: |
+          if rustup component add clippy; then
+            ./scripts/lint.sh
+          fi
+    - run:
+        name: Test
+        command: ./scripts/test.sh
+workflows:
+  version: 2
+  run:
+    jobs:
+    - stable
+    - nightly
