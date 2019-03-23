@@ -76,7 +76,7 @@ mod tests {
     #[test]
     fn initialize_uses_specified_template() {
         let fs = FakeFileSystem::new();
-        let template = Template::new("test", "foo".as_bytes(), "bar".as_bytes());
+        let template = Template::new("foo".as_bytes(), "bar".as_bytes());
         let mut initializer = Initializer::new().fs(&fs);
 
         initializer.template(&template);

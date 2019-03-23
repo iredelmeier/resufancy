@@ -7,7 +7,7 @@ lazy_static! {
         let html = include_bytes!("../templates/basic/resume.pug");
         let stylesheet = include_bytes!("../templates/basic/style.scss");
 
-        Template::new("basic", html, stylesheet)
+        Template::new(html, stylesheet)
     };
 }
 
@@ -15,7 +15,7 @@ lazy_static! {
     pub static ref TEMPLATES: HashMap<&'static str, &'static Template<'static>> = {
         let mut templates = HashMap::new();
 
-        templates.insert(BASIC.name(), &*BASIC);
+        templates.insert("basic", &*BASIC);
 
         templates
     };
