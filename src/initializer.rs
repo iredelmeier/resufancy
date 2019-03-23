@@ -8,7 +8,7 @@ use crate::{CSS_PATH, FILE_SYSTEM, HTML_PATH};
 #[derive(Debug, Clone)]
 pub struct Initializer<'a, T = OsFileSystem> {
     fs: &'a T,
-    template: &'a Template<'a>,
+    template: &'a Template,
 }
 
 impl<'a> Initializer<'a, OsFileSystem> {
@@ -76,7 +76,7 @@ mod tests {
     #[test]
     fn initialize_uses_specified_template() {
         let fs = FakeFileSystem::new();
-        let template = Template::new("foo".as_bytes(), "bar".as_bytes());
+        let template = Template::new("foo".as_bytes().to_vec(), "bar".as_bytes().to_vec());
         let mut initializer = Initializer::new().fs(&fs);
 
         initializer.template(&template);
