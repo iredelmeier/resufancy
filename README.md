@@ -52,6 +52,6 @@ Check [scripts/install-wkhtmltox.sh] for reference.
     ```bash
     resufancy build --watch
     ```
-1. Edit `resume.pug` and `style.scss` to your heart's content
+1. Edit `resume.pug` and `style.css` to your heart's content
 1. Use `resume.pdf` in your applications
 1. Get your dream job! 🎉

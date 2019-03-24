@@ -13,7 +13,6 @@ use crate::commands::Commands;
 mod commands;
 
 const PUG_PATH: &str = "resume.pug";
-const SCSS_PATH: &str = "style.scss";
 const HTML_PATH: &str = "resume.html";
 const CSS_PATH: &str = "style.css";
 const PDF_PATH: &str = "resume.pdf";

@@ -5,7 +5,7 @@ use crate::template::Template;
 lazy_static! {
     pub static ref BASIC: Template<'static> = {
         let html = include_bytes!("../templates/basic/resume.pug").to_vec();
-        let stylesheet = include_bytes!("../templates/basic/style.scss").to_vec();
+        let stylesheet = include_bytes!("../templates/basic/style.css").to_vec();
 
         Template::new("basic", html, stylesheet)
     };
