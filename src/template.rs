@@ -1,12 +1,21 @@
 #[derive(Debug, Clone)]
-pub struct Template {
+pub struct Template<'a> {
+    name: &'a str,
     html: Vec<u8>,
     stylesheet: Vec<u8>,
 }
 
-impl Template {
-    pub fn new(html: Vec<u8>, stylesheet: Vec<u8>) -> Self {
-        Self { html, stylesheet }
+impl<'a> Template<'a> {
+    pub fn new(name: &'a str, html: Vec<u8>, stylesheet: Vec<u8>) -> Self {
+        Self {
+            name,
+            html,
+            stylesheet,
+        }
+    }
+
+    pub fn name(&self) -> &str {
+        self.name
     }
 
     pub fn html(&self) -> &[u8] {
