@@ -39,9 +39,31 @@ jobs:
     - run:
         name: Test
         command: ./scripts/test.sh
+  release:
+    docker:
+    - image: rust:latest
+    steps:
+    - checkout
+    - setup_remote_docker
+    - run:
+        name: Install docker CLI
+        command: |
+          curl -fsSL https://get.docker.com -o get-docker.sh
+          bash get-docker.sh
+    - run:
+        name: Install wkhtmltopdf libraries
+        command: ./scripts/install-wkhtmltox.sh
+    - run:
+        name: Create release artifacts
+        command: |
+          cargo install cross
+          ./scripts/release.sh
+    - store_artifacts:
+        path: /tmp/artifacts
 workflows:
   version: 2
   run:
     jobs:
     - stable
     - nightly
+    - release
