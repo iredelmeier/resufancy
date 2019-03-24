@@ -1,3 +1,54 @@
+html {
+  font-size: 18px;
+}
+
+body {
+  margin: 2.5rem;
+}
+
 header {
   text-align: center;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 2rem;
+}
+
+h2, h3 {
+  font-size: 1rem;
+}
+
+h1, h2, h3, p, ul {
+  margin: 0;
+}
+
+ul {
+  padding-left: 1rem;
+}
+
+main {
+  h2 {
+    text-transform: uppercase;
+  }
+}
+
+section {
+  margin-top: 1rem;
+}
+
+.columns {
+  width: 100%;
+}
+
+.columns, ul {
+  clear: both;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
 }
