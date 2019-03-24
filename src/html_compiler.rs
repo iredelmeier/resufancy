@@ -54,7 +54,7 @@ mod tests {
     fn compile_fails_if_template_has_non_utf8_html() {
         let invalid_html = INVALID_UTF8;
         let valid_stylesheet = &BASIC.stylesheet();
-        let template = Template::new(invalid_html.to_vec(), valid_stylesheet.to_vec());
+        let template = Template::new("test", invalid_html.to_vec(), valid_stylesheet.to_vec());
         let compiler = HtmlCompiler::default();
 
         let result = compiler.compile(&template);
@@ -66,7 +66,7 @@ mod tests {
     fn compile_fails_if_template_has_non_utf8_stylesheet() {
         let valid_html = &BASIC.html();
         let invalid_stylesheet = INVALID_UTF8;
-        let template = Template::new(valid_html.to_vec(), invalid_stylesheet.to_vec());
+        let template = Template::new("test", valid_html.to_vec(), invalid_stylesheet.to_vec());
         let compiler = HtmlCompiler::default();
 
         let result = compiler.compile(&template);
@@ -78,7 +78,7 @@ mod tests {
     fn compile_fails_if_template_html_is_not_valid_pug() {
         let invalid_html = b"<html></html>";
         let valid_stylesheet = &BASIC.stylesheet();
-        let template = Template::new(invalid_html.to_vec(), valid_stylesheet.to_vec());
+        let template = Template::new("test", invalid_html.to_vec(), valid_stylesheet.to_vec());
         let compiler = HtmlCompiler::default();
 
         let result = compiler.compile(&template);
@@ -90,7 +90,7 @@ mod tests {
     fn compile_fails_if_template_stylesheet_is_not_valid_sass() {
         let valid_html = &BASIC.html();
         let invalid_stylesheet = b"invalid";
-        let template = Template::new(valid_html.to_vec(), invalid_stylesheet.to_vec());
+        let template = Template::new("test", valid_html.to_vec(), invalid_stylesheet.to_vec());
         let compiler = HtmlCompiler::default();
 
         let result = compiler.compile(&template);
