@@ -1,3 +1,4 @@
+#[macro_use]
 extern crate clap;
 extern crate filesystem;
 #[macro_use]
@@ -23,9 +24,14 @@ lazy_static! {
 
 fn main() {
     let subcommands = Commands::new();
-    let global_settings = [AppSettings::ColoredHelp];
+    let global_settings = [
+        AppSettings::ColoredHelp,
+        AppSettings::VersionlessSubcommands,
+    ];
     let settings = [AppSettings::SubcommandRequiredElseHelp];
-    let app = App::new(env!("CARGO_PKG_NAME"))
+    let app = App::new(crate_name!())
+        .version(crate_version!())
+        .about(crate_description!())
         .subcommands(subcommands.build())
         .global_settings(&global_settings)
         .settings(&settings);
