@@ -5,6 +5,7 @@ authors = ["Isobel Redelmeier <iredelmeier@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+clap = "2.32"
 filesystem = "0.4"
 lazy_static="1.3"
 pug = { git = "https://github.com/iredelmeier/pug-rs" }
