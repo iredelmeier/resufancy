@@ -1,21 +1,37 @@
+use std::cell::RefCell;
 use std::io::Read;
+use std::rc::Rc;
 
 use wkhtmltopdf::PdfApplication;
 
 use crate::error::Result;
 use crate::resume::Resume;
 
-#[derive(Debug, Clone, Default)]
-pub struct PdfCompiler;
+#[derive(Default)]
+pub struct PdfCompiler {
+    compiler: Rc<RefCell<Option<PdfApplication>>>,
+}
 
 impl PdfCompiler {
     pub fn new() -> Self {
-        Self
+        Self {
+            compiler: Rc::new(RefCell::new(None)),
+        }
     }
 
     pub fn compile(&self, resume: &Resume) -> Result<Vec<u8>> {
-        let mut app = PdfApplication::new()?;
-        let mut builder = app.builder();
+        let mut compiler = self.compiler.borrow_mut();
+        let mut builder = match *compiler {
+            Some(ref mut compiler) => compiler.builder(),
+            None => {
+                let mut app = PdfApplication::new()?;
+                let b = app.builder();
+
+                *compiler = Some(app);
+
+                b
+            }
+        };
         let mut pdf = builder.build_from_html(&resume.html())?;
         let mut bytes: Vec<u8> = vec![];
 

@@ -2,6 +2,7 @@ extern crate clap;
 extern crate filesystem;
 #[macro_use]
 extern crate lazy_static;
+extern crate notify;
 
 use clap::{App, AppSettings};
 use filesystem::OsFileSystem;
