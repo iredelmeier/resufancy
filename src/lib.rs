@@ -13,5 +13,11 @@ pub mod templates;
 mod html_compiler;
 mod pdf_compiler;
 
+use filesystem::OsFileSystem;
+
 pub use crate::html_compiler::HtmlCompiler;
 pub use crate::pdf_compiler::PdfCompiler;
+
+lazy_static! {
+    static ref FILE_SYSTEM: OsFileSystem = OsFileSystem::new();
+}
