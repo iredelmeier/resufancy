@@ -6,6 +6,9 @@ jobs:
     steps:
     - checkout
     - run:
+        name: Install wkhtmltopdf libraries
+        command: ./scripts/install-wkhtmltox.sh
+    - run:
         name: Build
         command: ./scripts/build.sh
     - run:
@@ -21,6 +24,9 @@ jobs:
     - image: rustlang/rust:nightly
     steps:
     - checkout
+    - run:
+        name: Install wkhtmltopdf libraries
+        command: ./scripts/install-wkhtmltox.sh
     - run:
         name: Build
         command: ./scripts/build.sh
