@@ -12,6 +12,22 @@ Tired of Word destroying your resume format when you add a word? Want to use som
 
 ## Installing
 
+### Prerequisities
+
+#### [`wkhtmltopdf`](https://wkhtmltopdf.org/)
+
+##### MacOS
+
+```bash
+brew cask install wkhtmltopdf
+```
+
+##### Linux
+
+Resufancy requires the `wkhtmltox` libraries, which currently seem to be omitted by some package managers. Some [older downloads](https://wkhtmltopdf.org/downloads.html) still contain these.
+
+Check [scripts/install-wkhtmltox.sh] for reference.
+
 ### Using `cargo`
 
 1. Install [cargo](https://github.com/rust-lang/cargo/), e.g., by installing [Rust](https://www.rust-lang.org/):
