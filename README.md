@@ -38,7 +38,9 @@ Check [scripts/install-wkhtmltox.sh] for reference.
 
 ### Using a pre-built binary
 
-Grab the latest version from the [Releases](https://github.com/iredelmeier/resufancy/releases).
+~~Grab the latest version from the [Releases](https://github.com/iredelmeier/resufancy/releases).~~
+
+**TODO**
 
 ## Usage
 
