@@ -23,7 +23,9 @@ impl Command for Initialize {
     }
 
     fn build(&self) -> App {
-        App::new(NAME).args(&[TEMPLATE.build()])
+        App::new(NAME)
+            .args(&[TEMPLATE.build()])
+            .about("Scaffold a new resume")
     }
 
     fn run(&self, matches: &ArgMatches) -> Result<Option<String>> {

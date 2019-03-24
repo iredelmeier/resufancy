@@ -29,7 +29,9 @@ impl Command for Build {
     }
 
     fn build(&self) -> App {
-        App::new(NAME).args(&[SKIP_HTML.build(), SKIP_PDF.build(), WATCH.build()])
+        App::new(NAME)
+            .args(&[SKIP_HTML.build(), SKIP_PDF.build(), WATCH.build()])
+            .about("Compile the resume into HTML and/or a PDF")
     }
 
     fn run(&self, matches: &ArgMatches) -> Result<Option<String>> {

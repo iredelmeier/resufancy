@@ -48,6 +48,8 @@ impl<'a> Arg<'a> for Template<'a> {
     fn build<'b: 'a>(&self) -> clap::Arg<'a, 'b> {
         clap::Arg::with_name(self.name())
             .long(self.name())
+            .short("t")
+            .help("The starting template for your resume")
             .takes_value(true)
             .required(true)
             .possible_values(&NAMES)
@@ -73,7 +75,9 @@ impl<'a> Arg<'a> for SkipHtml {
     }
 
     fn build<'b: 'a>(&self) -> clap::Arg<'a, 'b> {
-        clap::Arg::with_name(self.name()).long(self.name())
+        clap::Arg::with_name(self.name())
+            .long(self.name())
+            .help("Skip saving the HTML and CSS files")
     }
 
     fn value_from<'b>(&self, matches: &'b ArgMatches) -> Self::Value {
@@ -92,7 +96,9 @@ impl<'a> Arg<'a> for SkipPdf {
     }
 
     fn build<'b: 'a>(&self) -> clap::Arg<'a, 'b> {
-        clap::Arg::with_name(self.name()).long(self.name())
+        clap::Arg::with_name(self.name())
+            .long(self.name())
+            .help("Skip saving the PDF file")
     }
 
     fn value_from<'b>(&self, matches: &'b ArgMatches) -> Self::Value {
@@ -111,7 +117,10 @@ impl<'a> Arg<'a> for Watch {
     }
 
     fn build<'b: 'a>(&self) -> clap::Arg<'a, 'b> {
-        clap::Arg::with_name(self.name()).long(self.name())
+        clap::Arg::with_name(self.name())
+            .long(self.name())
+            .short("w")
+            .help("Update when relevant files change")
     }
 
     fn value_from<'b>(&self, matches: &'b ArgMatches) -> Self::Value {
