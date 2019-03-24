@@ -27,6 +27,7 @@ impl PdfCompiler {
 
 #[cfg(test)]
 mod tests {
+    use crate::resume::RawResume;
     use crate::templates::BASIC;
     use crate::HtmlCompiler;
 
@@ -34,7 +35,8 @@ mod tests {
 
     #[test]
     fn compile_creates_pdf_from_valid_resume() {
-        let resume = HtmlCompiler::default().compile(&BASIC).unwrap();
+        let raw_resume = RawResume::new(BASIC.html(), BASIC.stylesheet());
+        let resume = HtmlCompiler::default().compile(&raw_resume).unwrap();
         let compiler = PdfCompiler::default();
 
         let pdf = compiler.compile(&resume);

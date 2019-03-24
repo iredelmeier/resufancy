@@ -3,8 +3,7 @@ use sass_rs::{self, Options};
 
 use crate::error::sass_error::SassError;
 use crate::error::Result;
-use crate::resume::Resume;
-use crate::template::Template;
+use crate::resume::{RawResume, Resume};
 
 #[derive(Debug, Clone)]
 pub struct HtmlCompiler;
@@ -16,9 +15,9 @@ impl HtmlCompiler {
 }
 
 impl HtmlCompiler {
-    pub fn compile(&self, template: &Template) -> Result<Resume> {
-        let html = String::from_utf8(template.html().to_vec())?;
-        let scss = String::from_utf8(template.stylesheet().to_vec())?;
+    pub fn compile(&self, resume: &RawResume) -> Result<Resume> {
+        let html = String::from_utf8(resume.html().to_vec())?;
+        let scss = String::from_utf8(resume.stylesheet().to_vec())?;
 
         let html = pug::parse(html)?;
         let css = sass_rs::compile_string(&scss, Options::default()).map_err(SassError::from)?;
@@ -45,16 +44,17 @@ mod tests {
     #[test]
     fn compile_creates_resume_from_valid_template() {
         let template = &BASIC;
+        let raw_resume = RawResume::new(template.html(), template.stylesheet());
         let compiler = HtmlCompiler::default();
 
-        assert!(compiler.compile(template).is_ok());
+        assert!(compiler.compile(&raw_resume).is_ok());
     }
 
     #[test]
     fn compile_fails_if_template_has_non_utf8_html() {
         let invalid_html = INVALID_UTF8;
         let valid_stylesheet = &BASIC.stylesheet();
-        let template = Template::new("test", invalid_html.to_vec(), valid_stylesheet.to_vec());
+        let template = RawResume::new(invalid_html, valid_stylesheet);
         let compiler = HtmlCompiler::default();
 
         let result = compiler.compile(&template);
@@ -66,10 +66,10 @@ mod tests {
     fn compile_fails_if_template_has_non_utf8_stylesheet() {
         let valid_html = &BASIC.html();
         let invalid_stylesheet = INVALID_UTF8;
-        let template = Template::new("test", valid_html.to_vec(), invalid_stylesheet.to_vec());
+        let raw_resume = RawResume::new(valid_html, invalid_stylesheet);
         let compiler = HtmlCompiler::default();
 
-        let result = compiler.compile(&template);
+        let result = compiler.compile(&raw_resume);
         assert!(result.is_err());
         assert_eq!(result.unwrap_err().kind(), &ErrorKind::InvalidUtf8);
     }
@@ -78,10 +78,10 @@ mod tests {
     fn compile_fails_if_template_html_is_not_valid_pug() {
         let invalid_html = b"<html></html>";
         let valid_stylesheet = &BASIC.stylesheet();
-        let template = Template::new("test", invalid_html.to_vec(), valid_stylesheet.to_vec());
+        let raw_resume = RawResume::new(invalid_html, valid_stylesheet);
         let compiler = HtmlCompiler::default();
 
-        let result = compiler.compile(&template);
+        let result = compiler.compile(&raw_resume);
         assert!(result.is_err());
         assert_eq!(result.unwrap_err().kind(), &ErrorKind::Pug);
     }
@@ -90,10 +90,10 @@ mod tests {
     fn compile_fails_if_template_stylesheet_is_not_valid_sass() {
         let valid_html = &BASIC.html();
         let invalid_stylesheet = b"invalid";
-        let template = Template::new("test", valid_html.to_vec(), invalid_stylesheet.to_vec());
+        let raw_resume = RawResume::new(valid_html, invalid_stylesheet);
         let compiler = HtmlCompiler::default();
 
-        let result = compiler.compile(&template);
+        let result = compiler.compile(&raw_resume);
         assert!(result.is_err());
         assert_eq!(result.unwrap_err().kind(), &ErrorKind::Sass);
     }
