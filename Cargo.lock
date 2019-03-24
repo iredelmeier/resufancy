@@ -361,8 +361,9 @@ dependencies = [
 ]
 
 [[package]]
-name = "pug"
-version = "0.1.8"
+name = "pug_tmp_workaround"
+version = "0.1.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "pest 2.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "pest_derive 2.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -444,7 +445,7 @@ dependencies = [
  "filesystem 0.4.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "lazy_static 1.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "notify 4.0.10 (registry+https://github.com/rust-lang/crates.io-index)",
- "pug 0.1.8",
+ "pug_tmp_workaround 0.1.9 (registry+https://github.com/rust-lang/crates.io-index)",
  "wkhtmltopdf 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -746,6 +747,7 @@ dependencies = [
 "checksum pest_generator 2.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "63120576c4efd69615b5537d3d052257328a4ca82876771d6944424ccfd9f646"
 "checksum pest_meta 2.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "f5a3492a4ed208ffc247adcdcc7ba2a95be3104f58877d0d02f0df39bf3efb5e"
 "checksum proc-macro2 0.4.27 (registry+https://github.com/rust-lang/crates.io-index)" = "4d317f9caece796be1980837fd5cb3dfec5613ebdb04ad0956deea83ce168915"
+"checksum pug_tmp_workaround 0.1.9 (registry+https://github.com/rust-lang/crates.io-index)" = "0903c1aeebbb418c5745d40841ea81bf1d9adcdb1d0eaa769442994fc04203a8"
 "checksum quick-error 1.2.2 (registry+https://github.com/rust-lang/crates.io-index)" = "9274b940887ce9addde99c4eee6b5c44cc494b182b97e73dc8ffdcb3397fd3f0"
 "checksum quote 0.6.11 (registry+https://github.com/rust-lang/crates.io-index)" = "cdd8e04bd9c52e0342b406469d494fcb033be4bdbe5c606016defbb1681411e1"
 "checksum rand 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)" = "552840b97013b1a26992c11eac34bdd778e464601a4c2054b5f0bff7c6761293"
