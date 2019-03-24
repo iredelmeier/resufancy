@@ -10,6 +10,7 @@ Interested in contributing? Awesome!
 
 1. Install [Rust](https://www.rust-lang.org/tools/install)
 1. Install [wkhtmltopdf](./README.md#wkhtmltopdf)
+1. Add the submodules: `git submodule update --init`
 1. Make the desired changes
 1. Run `cargo test` to run tests
 1. Install [Clippy](https://github.com/rust-lang/rust-clippy) and run `cargo clippy` to check for linter errors
