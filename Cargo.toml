@@ -9,5 +9,5 @@ clap = "2.32"
 filesystem = "0.4"
 lazy_static="1.3"
 notify = "4.0"
-pug = { git = "https://github.com/iredelmeier/pug-rs" }
+pug = { path = "./pug-rs" }
 wkhtmltopdf = "0.3"

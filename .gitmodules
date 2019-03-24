@@ -1,0 +1,3 @@
+[submodule "pug-rs"]
+	path = pug-rs
+	url = git@github.com:iredelmeier/pug-rs

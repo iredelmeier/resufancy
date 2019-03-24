@@ -5,6 +5,8 @@ jobs:
     - image: rust:latest
     steps:
     - checkout
+    - run: git submodule sync
+    - run: git submodule update --init
     - run:
         name: Install wkhtmltopdf libraries
         command: ./scripts/install-wkhtmltox.sh
@@ -24,6 +26,8 @@ jobs:
     - image: rustlang/rust:nightly
     steps:
     - checkout
+    - run: git submodule sync
+    - run: git submodule update --init
     - run:
         name: Install wkhtmltopdf libraries
         command: ./scripts/install-wkhtmltox.sh
@@ -44,6 +48,8 @@ jobs:
     - image: rust:latest
     steps:
     - checkout
+    - run: git submodule sync
+    - run: git submodule update --init
     # - setup_remote_docker
     # - run:
         # name: Install docker CLI
