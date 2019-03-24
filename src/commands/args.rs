@@ -15,6 +15,10 @@ lazy_static! {
     pub static ref SKIP_PDF: SkipPdf = { SkipPdf::default() };
 }
 
+lazy_static! {
+    pub static ref WATCH: Watch = { Watch::default() };
+}
+
 pub trait Arg<'a> {
     type Value;
 
@@ -85,6 +89,25 @@ impl<'a> Arg<'a> for SkipPdf {
 
     fn name(&self) -> &'static str {
         "skip-pdf"
+    }
+
+    fn build<'b: 'a>(&self) -> clap::Arg<'a, 'b> {
+        clap::Arg::with_name(self.name()).long(self.name())
+    }
+
+    fn value_from<'b>(&self, matches: &'b ArgMatches) -> Self::Value {
+        matches.is_present(self.name())
+    }
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct Watch;
+
+impl<'a> Arg<'a> for Watch {
+    type Value = bool;
+
+    fn name(&self) -> &'static str {
+        "watch"
     }
 
     fn build<'b: 'a>(&self) -> clap::Arg<'a, 'b> {
