@@ -10,7 +10,7 @@ use resufancy::{HtmlCompiler, PdfCompiler};
 
 use super::args::{Arg, SKIP_HTML, SKIP_PDF, WATCH};
 use super::Command;
-use crate::{CSS_PATH, FILE_SYSTEM, HTML_PATH, PDF_PATH, PUG_PATH, SCSS_PATH};
+use crate::{CSS_PATH, FILE_SYSTEM, HTML_PATH, PDF_PATH, PUG_PATH};
 
 const NAME: &str = "build";
 
@@ -48,7 +48,7 @@ impl Command for Build {
                 .watch(PUG_PATH, RecursiveMode::NonRecursive)
                 .expect("Failed to watch file");
             watcher
-                .watch(SCSS_PATH, RecursiveMode::NonRecursive)
+                .watch(CSS_PATH, RecursiveMode::NonRecursive)
                 .expect("Failed to watch file");
 
             let recompile = || {
@@ -73,8 +73,8 @@ impl Command for Build {
 
 fn compile(skip_html: bool, skip_pdf: bool, pdf_compiler: &PdfCompiler) -> Result<Option<String>> {
     let pug = FILE_SYSTEM.read_file(PUG_PATH)?;
-    let scss = FILE_SYSTEM.read_file(SCSS_PATH)?;
-    let raw_resume = RawResume::new(&pug, &scss);
+    let css = FILE_SYSTEM.read_file(CSS_PATH)?;
+    let raw_resume = RawResume::new(&pug, &css);
     let html_compiler = HtmlCompiler::default();
     let resume = html_compiler.compile(&raw_resume)?;
 

@@ -2,7 +2,6 @@ extern crate filesystem;
 #[macro_use]
 extern crate lazy_static;
 extern crate pug;
-extern crate sass_rs;
 extern crate wkhtmltopdf;
 
 pub mod error;

@@ -6,15 +6,10 @@ use std::string::FromUtf8Error;
 use pug::{self, RuleType};
 use wkhtmltopdf;
 
-use crate::error::sass_error::SassError;
-
-pub mod sass_error;
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ErrorKind {
     Io(io::ErrorKind),
     Pug,
-    Sass,
     InvalidUtf8,
     Pdf,
 }
@@ -36,13 +31,6 @@ impl Error {
     pub fn pug<R: 'static + RuleType>(source: pug::Error<R>) -> Self {
         Self {
             kind: ErrorKind::Pug,
-            source: Box::new(source),
-        }
-    }
-
-    pub fn sass(source: SassError) -> Self {
-        Self {
-            kind: ErrorKind::Sass,
             source: Box::new(source),
         }
     }
@@ -83,12 +71,6 @@ impl From<io::Error> for Error {
 impl<R: 'static + RuleType> From<pug::Error<R>> for Error {
     fn from(other: pug::Error<R>) -> Self {
         Error::pug(other)
-    }
-}
-
-impl From<SassError> for Error {
-    fn from(other: SassError) -> Self {
-        Error::sass(other)
     }
 }
 

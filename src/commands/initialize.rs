@@ -4,7 +4,7 @@ use resufancy::error::Result;
 
 use super::args::{Arg, TEMPLATE};
 use super::Command;
-use crate::{FILE_SYSTEM, PUG_PATH, SCSS_PATH};
+use crate::{CSS_PATH, FILE_SYSTEM, PUG_PATH};
 
 const NAME: &str = "init";
 
@@ -32,7 +32,7 @@ impl Command for Initialize {
         let template = TEMPLATE.value_from(matches);
 
         FILE_SYSTEM.create_file(PUG_PATH, template.html())?;
-        FILE_SYSTEM.create_file(SCSS_PATH, template.stylesheet())?;
+        FILE_SYSTEM.create_file(CSS_PATH, template.stylesheet())?;
 
         Ok(None)
     }

@@ -1,7 +1,5 @@
 use pug;
-use sass_rs::{self, Options};
 
-use crate::error::sass_error::SassError;
 use crate::error::Result;
 use crate::resume::{RawResume, Resume};
 
@@ -17,10 +15,9 @@ impl HtmlCompiler {
 impl HtmlCompiler {
     pub fn compile(&self, resume: &RawResume) -> Result<Resume> {
         let html = String::from_utf8(resume.html().to_vec())?;
-        let scss = String::from_utf8(resume.stylesheet().to_vec())?;
+        let css = String::from_utf8(resume.stylesheet().to_vec())?;
 
         let html = pug::parse(html)?;
-        let css = sass_rs::compile_string(&scss, Options::default()).map_err(SassError::from)?;
 
         Ok(Resume::new(html, css))
     }
@@ -84,17 +81,5 @@ mod tests {
         let result = compiler.compile(&raw_resume);
         assert!(result.is_err());
         assert_eq!(result.unwrap_err().kind(), &ErrorKind::Pug);
-    }
-
-    #[test]
-    fn compile_fails_if_template_stylesheet_is_not_valid_sass() {
-        let valid_html = &BASIC.html();
-        let invalid_stylesheet = b"invalid";
-        let raw_resume = RawResume::new(valid_html, invalid_stylesheet);
-        let compiler = HtmlCompiler::default();
-
-        let result = compiler.compile(&raw_resume);
-        assert!(result.is_err());
-        assert_eq!(result.unwrap_err().kind(), &ErrorKind::Sass);
     }
 }
