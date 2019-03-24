@@ -1,19 +1,19 @@
 #[derive(Debug, Clone)]
 pub struct Resume {
-    html: Vec<u8>,
-    stylesheet: Vec<u8>,
+    html: String,
+    stylesheet: String,
 }
 
 impl Resume {
-    pub fn new(html: Vec<u8>, stylesheet: Vec<u8>) -> Self {
+    pub fn new(html: String, stylesheet: String) -> Self {
         Self { html, stylesheet }
     }
 
-    pub fn html(&self) -> &[u8] {
+    pub fn html(&self) -> &str {
         &self.html
     }
 
-    pub fn stylesheet(&self) -> &[u8] {
+    pub fn stylesheet(&self) -> &str {
         &self.stylesheet
     }
 }

@@ -23,7 +23,7 @@ impl HtmlCompiler {
         let html = pug::parse(html)?;
         let css = sass_rs::compile_string(&scss, Options::default()).map_err(SassError::from)?;
 
-        Ok(Resume::new(html.into_bytes(), css.into_bytes()))
+        Ok(Resume::new(html, css))
     }
 }
 
