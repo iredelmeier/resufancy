@@ -2,7 +2,16 @@
 name = "resufancy"
 version = "0.1.0"
 authors = ["Isobel Redelmeier <iredelmeier@gmail.com>"]
+description = "Supercharge your resume with the power of your favourite web development tools"
 edition = "2018"
+license = "MIT"
+homepage = "https://github.com/iredelmeier/resufancy"
+repository = "https://github.com/iredelmeier/resufancy"
+keywords = ["resume", "cli"]
+categories = ["command-line-utilities"]
+
+[badges]
+circle-ci = { repository = "https://github.com/iredelmeier/resufancy" }
 
 [dependencies]
 clap = "2.32"
