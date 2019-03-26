@@ -12,7 +12,7 @@ keywords = ["resume", "cli"]
 categories = ["command-line-utilities"]
 
 [badges]
-circle-ci = { repository = "https://github.com/iredelmeier/resufancy" }
+circle-ci = { repository = "iredelmeier/resufancy" }
 
 [dependencies]
 clap = "2.32"
