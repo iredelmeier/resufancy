@@ -7,6 +7,7 @@ edition = "2018"
 license = "MIT"
 homepage = "https://github.com/iredelmeier/resufancy"
 repository = "https://github.com/iredelmeier/resufancy"
+readme = "README.md"
 keywords = ["resume", "cli"]
 categories = ["command-line-utilities"]
 
