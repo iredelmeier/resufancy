@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.1.2] - 3/25/19
+
+* Switch to using original [`pug`](https://crates.io/crates/pug) crate
+
 ## [0.1.1] - 3/25/19
 
 ### Added

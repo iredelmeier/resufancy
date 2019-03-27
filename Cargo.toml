@@ -1,6 +1,6 @@
 [package]
 name = "resufancy"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Isobel Redelmeier <iredelmeier@gmail.com>"]
 description = "Supercharge your resume with the power of your favourite web development tools"
 edition = "2018"
