@@ -31,7 +31,7 @@ Check [scripts/install-wkhtmltox.sh] for reference.
 ### Using `cargo`
 
 1. Install [cargo](https://github.com/rust-lang/cargo/), e.g., by installing [Rust](https://www.rust-lang.org/):
-     * See the [Rust installation guide][https://www.rust-lang.org/tools/install] for the latest instructions
+     * See the [Rust installation guide](https://www.rust-lang.org/tools/install) for the latest instructions
 1. Run `cargo install resufancy`
 
 **Note:** To run `resufancy` directly, please make sure to add the cargo installation path (e.g., `${HOME}/.cargo/bin`) to your `$PATH`. Otherwise, you can run `cargo resufancy` to use the CLI.
